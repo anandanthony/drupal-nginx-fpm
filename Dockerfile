@@ -49,6 +49,8 @@ COPY drupal.tar.gz $DRUPAL_SOURCE/
 WORKDIR $DRUPAL_HOME
 RUN rm -rf $DOCKER_BUILD_HOME
 
+COPY www.conf /etc/php/7.0/fpm/pool.d/
+
 # =====
 # final
 # =====
