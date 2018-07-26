@@ -28,6 +28,14 @@ ENV PHP_CONF_FILE $PHP_CONF_DIR"/php.ini"
 
 COPY php.ini /etc/php/7.0/fpm/
 
+# Allow to include custom php-fpm config, e.g. to set environment variables
+RUN echo 'include=/usr/local/etc/conf.d/*' >> /usr/local/etc/php-fpm.conf \
+    && mkdir /usr/local/etc/conf.d/
+
+COPY run-php-fpm /usr/local/bin/
+
+CMD ["run-php-fpm"]
+
 # ====================
 # Download and Install
 # ~. essentials
